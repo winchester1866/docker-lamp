@@ -1,11 +1,6 @@
-FROM ubuntu
-
+FROM php:7.4-apache
 RUN apt-get update
-RUN apt-get install -y apache2
-RUN apt-get install -y php
-
-COPY ./simpleApp/index.php /var/www/html/index.php
-
-CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
-
+RUN apt-get install nano
+RUN echo "ServerName localhost" >> /etc/apache2.conf
+COPY site /var/www/html/
 EXPOSE 80
